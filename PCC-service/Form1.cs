@@ -105,12 +105,14 @@ namespace PCC_service
                     notifyIcon1.ShowBalloonTip(20000);
                     break;
                 }
+
                 var str = Encoding.UTF8.GetString(buffer, 0, effective);
                 Console.WriteLine(str);
                 if (str == "shutdown")
                 {
                     shutdown();
                 }
+
                 var buffers = Encoding.UTF8.GetBytes("200");
                 send.Send(buffers);
             }
@@ -119,7 +121,7 @@ namespace PCC_service
         private void shutdown()
         {
             Console.WriteLine("---------- 关机指令");
-            Process.Start("shutdown.exe", "-s");
+            Process.Start("shutdown.exe", "-s -t 1");
 
             // Process.Start("shutdown.exe", "-r");//重启
             // Process.Start("shutdown.exe", "-l");//注销
